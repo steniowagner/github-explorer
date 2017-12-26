@@ -7,7 +7,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  AsyncStorage
+  AsyncStorage,
+  ActivityIndicator
 } from 'react-native';
 
 import api from 'services/api';
@@ -26,6 +27,7 @@ class Welcome extends Component {
     this.state = {
       username: '',
       typedUsername: false,
+      isLoading: false,
       userExists: true
     };
   }
@@ -41,6 +43,10 @@ class Welcome extends Component {
   };
 
   onExploreButtonPressed = () => {
+    this.setState({
+      isLoading: true
+    })
+
     this.getGitHubUserInfo()
       .then(() => {
         this.persistUsernameIntoStorage();
@@ -49,7 +55,8 @@ class Welcome extends Component {
       .catch(() => {
         this.setState({
           userExists: false,
-          typedUsername: false
+          typedUsername: false,
+          isLoading: false
         });
       });
   }
@@ -108,6 +115,14 @@ class Welcome extends Component {
             style={this.state.typedUsername ? ACTIVE_BUTTON_TEXT_STYLE : INACTIVE_BUTTON_TEXT_STYLE}
           >Explore</Text>
         </TouchableOpacity>
+
+        {
+          this.state.isLoading &&
+          <ActivityIndicator
+            size="small"
+            color="#FFF"
+            style={{ marginTop: 10 }} />
+        }
 
         {
           !this.state.userExists &&

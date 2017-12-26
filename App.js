@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 
-import './src/config/reactotron-config';
 import AppContainer from './src/components';
+import './src/config/reactotron-config';
 
 const App = () => {
   return (

@@ -9,19 +9,23 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import api from 'services/api';
 import styles from './styles';
 
 const ACTIVE_BUTTON_STYLE = [styles.largeWidgetStyle, styles.baseButton, styles.activeButton];
 const INACTIVE_BUTTON_STYLE = [styles.largeWidgetStyle, styles.baseButton, styles.inactiveButton];
 
-class Welcome extends Component {
+const ACTIVE_BUTTON_TEXT_STYLE = [styles.baseButtonText, styles.buttonTextActive];
+const INACTIVE_BUTTON_TEXT_STYLE = [styles.baseButtonText, styles.buttonTextInactive];
 
+class Welcome extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       username: '',
-      typedUsername: false
+      typedUsername: false,
+      userExists: true
     };
   }
 
@@ -36,6 +40,27 @@ class Welcome extends Component {
   };
 
   onExploreButtonPressed = () => {
+    this.getGitHubUserInfo()
+      .then(() => {
+        this.performScreenNavigation();
+      })
+      .catch(() => {
+        this.setState({
+          userExists: false,
+          typedUsername: false
+        });
+      });
+  }
+
+  getGitHubUserInfo = async () => {
+    const response = await api.get(`/users/${this.state.username}`);
+
+    if (!response.ok) {
+      throw Error();
+    }
+  }
+
+  performScreenNavigation = () => {
     const { dispatch } = this.props.navigation;
 
     const resetAction = NavigationActions.reset({
@@ -54,7 +79,7 @@ class Welcome extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcomeTitle}>Welcome!</Text>
-        <Text style={styles.welcomeDescription}>To go ahead, enter with some GitHub username</Text>
+        <Text style={[styles.baseDescription, styles.welcomeDescription]}>To go ahead, enter with some GitHub username</Text>
 
         <TextInput
           style={[styles.largeWidgetStyle, styles.input]}
@@ -64,7 +89,8 @@ class Welcome extends Component {
           onChangeText={username => {
             this.setState({
               username,
-              typedUsername: username.length > 0
+              typedUsername: username.length > 0,
+              userExists: true
             });
           }} />
 
@@ -73,9 +99,17 @@ class Welcome extends Component {
           onPress={this.onExploreButtonPressed}
           disabled={!this.state.typedUsername}>
           <Text
-            style={this.state.typedUsername ? styles.buttonTextActive : styles.buttonTextInactive}
+            style={this.state.typedUsername ? ACTIVE_BUTTON_TEXT_STYLE : INACTIVE_BUTTON_TEXT_STYLE}
           >Explore</Text>
         </TouchableOpacity>
+
+        {
+          !this.state.userExists &&
+          <Text style={[styles.baseDescription, styles.errorDescription]}>
+            The user "{this.state.username}" doesn't exists on GitHub. Try another username.
+          </Text>
+        }
+
       </View>
     );
   }

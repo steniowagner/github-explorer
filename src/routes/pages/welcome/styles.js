@@ -16,12 +16,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
 
-  welcomeDescription: {
+  baseDescription: {
     fontSize: fonts.regular,
-    color: colors.white,
     marginTop: 10,
     marginHorizontal: 20,
     textAlign: 'center'
+  },
+
+  welcomeDescription: {
+    color: colors.white
+  },
+
+  errorDescription: {
+    color: colors.error
   },
 
   largeWidgetStyle: {

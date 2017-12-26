@@ -24,31 +24,45 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
 
-  input: {
-    backgroundColor: colors.white,
+  largeWidgetStyle: {
     alignSelf: 'stretch',
     height: 44,
     borderRadius: 3,
     marginTop: 10,
+  },
+
+  input: {
+    backgroundColor: colors.white,
     fontSize: fonts.small,
     paddingHorizontal: 20
   },
 
-  button: {
-    backgroundColor: colors.secondary,
-    alignSelf: 'stretch',
-    height: 44,
-    borderRadius: 3,
-    marginTop: 10,
+  baseButton: {
     alignItems: 'center',
     justifyContent: 'center'
   },
 
-  buttonText: {
+  activeButton: {
+    backgroundColor: colors.secondary,
+  },
+
+  inactiveButton: {
+    backgroundColor: colors.inactive
+  },
+
+  baseButtonText: {
     fontSize: fonts.small,
-    color: colors.white,
     fontWeight: 'bold'
+  },
+
+  buttonTextActive: {
+    color: colors.white,
+  },
+
+  buttonTextInactive: {
+    color: colors.light
   }
+
 });
 
 export default styles;

@@ -6,7 +6,8 @@ import {
   View,
   Text,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  AsyncStorage
 } from 'react-native';
 
 import api from 'services/api';
@@ -42,6 +43,7 @@ class Welcome extends Component {
   onExploreButtonPressed = () => {
     this.getGitHubUserInfo()
       .then(() => {
+        this.persistUsernameIntoStorage();
         this.performScreenNavigation();
       })
       .catch(() => {
@@ -58,6 +60,10 @@ class Welcome extends Component {
     if (!response.ok) {
       throw Error();
     }
+  }
+
+  persistUsernameIntoStorage = async () => {
+    await AsyncStorage.setItem('@GitHubExplorer:username', this.state.username);
   }
 
   performScreenNavigation = () => {

@@ -1,8 +1,11 @@
 import { StackNavigator, TabNavigator } from 'react-navigation';
+import React from 'react';
 
-import Repositories from './pages/repositories';
-import Organizations from './pages/organizations';
-import Welcome from './pages/welcome';
+import Welcome from 'components/pages/welcome';
+import Repositories from 'components/pages/repositories';
+import Organizations from 'components/pages/organizations';
+
+import Header from 'components/header';
 
 const createRootNavigator = (userAlreadyPersisted = false) =>
   StackNavigator({
@@ -21,6 +24,9 @@ const createRootNavigator = (userAlreadyPersisted = false) =>
     }
   }, {
       initialRouteName: userAlreadyPersisted ? 'Explorer' : 'Welcome',
+      navigationOptions: {
+        header: props => <Header {...props} />,
+      }
     }
   );
 

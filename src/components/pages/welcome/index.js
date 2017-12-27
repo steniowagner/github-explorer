@@ -42,7 +42,7 @@ class Welcome extends Component {
     header: null
   };
 
-  onExploreButtonPressed = () => {
+  onExploreButtonClicked = () => {
     this.setState({
       isLoading: true
     })
@@ -109,20 +109,23 @@ class Welcome extends Component {
 
         <TouchableOpacity
           style={this.state.typedUsername ? ACTIVE_BUTTON_STYLE : INACTIVE_BUTTON_STYLE}
-          onPress={this.onExploreButtonPressed}
+          onPress={this.onExploreButtonClicked}
           disabled={!this.state.typedUsername}>
-          <Text
-            style={this.state.typedUsername ? ACTIVE_BUTTON_TEXT_STYLE : INACTIVE_BUTTON_TEXT_STYLE}
-          >Explore</Text>
-        </TouchableOpacity>
 
-        {
-          this.state.isLoading &&
-          <ActivityIndicator
-            size="small"
-            color="#FFF"
-            style={{ marginTop: 10 }} />
-        }
+          {
+            this.state.isLoading ?
+              <ActivityIndicator
+                size="small"
+                color="#FFF" />
+
+              :
+
+              <Text style={this.state.typedUsername ? ACTIVE_BUTTON_TEXT_STYLE : INACTIVE_BUTTON_TEXT_STYLE}>
+                Explore
+              </Text>
+          }
+
+        </TouchableOpacity>
 
         {
           !this.state.userExists &&

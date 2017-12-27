@@ -13,7 +13,6 @@ class AppContainer extends Component {
   }
 
   componentWillMount() {
-    //AsyncStorage.clear()
     this.checkUserAlreadyPersisted()
       .then(res => {
         this.setState({

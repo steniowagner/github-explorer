@@ -14,7 +14,7 @@ import { persistItemInStorage } from 'utils/async-storage-manager';
 import { GITHUB_USERNAME_KEY } from '/utils/global-keys';
 import { navigate } from 'utils/navigation-manager';
 
-import api from 'services/api';
+import githubApiService from 'services/github-api';
 import styles from './styles';
 
 const ACTIVE_BUTTON_STYLE = [styles.largeWidgetStyle, styles.baseButton, styles.activeButton];
@@ -65,7 +65,7 @@ class Welcome extends Component {
   }
 
   getGitHubUserInfo = async () => {
-    const response = await api.get(`/users/${this.state.username}`);
+    const response = await githubApiService.get(`/users/${this.state.username}`);
 
     if (!response.ok) {
       throw Error();

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import createRootNavigator from 'routes';
 
 import { getItemFromStorage } from 'utils/async-storage-manager';
-import { GITHUB_USERNAME_KEY } from '/utils/global-keys';
+import { GITHUB_USERNAME_KEY } from 'utils/global-keys';
 
 class AppContainer extends Component {
   constructor(props) {

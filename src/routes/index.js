@@ -6,6 +6,7 @@ import Repositories from 'components/pages/repositories';
 import Organizations from 'components/pages/organizations';
 
 import Header from 'components/header';
+import { colors } from 'styles';
 
 const createRootNavigator = (userAlreadyPersisted = false) =>
   StackNavigator({
@@ -20,7 +21,17 @@ const createRootNavigator = (userAlreadyPersisted = false) =>
         Organizations: {
           screen: Organizations
         }
-      })
+      }, {
+          tabBarPosition: 'bottom',
+          tabBarOptions: {
+            showLabel: false,
+            activeTintColor: colors.white,
+            inactiveTintColor: colors.inactive,
+            style: {
+              backgroundColor: colors.primary
+            }
+          }
+        })
     }
   },
     {

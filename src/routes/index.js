@@ -9,10 +9,10 @@ import Header from 'components/header';
 
 const createRootNavigator = (userAlreadyPersisted = false) =>
   StackNavigator({
-    'Welcome': {
+    Welcome: {
       screen: Welcome
     },
-    'Explorer': {
+    Explorer: {
       screen: TabNavigator({
         Repositories: {
           screen: Repositories
@@ -22,7 +22,8 @@ const createRootNavigator = (userAlreadyPersisted = false) =>
         }
       })
     }
-  }, {
+  },
+    {
       initialRouteName: userAlreadyPersisted ? 'Explorer' : 'Welcome',
       navigationOptions: {
         header: props => <Header {...props} />,

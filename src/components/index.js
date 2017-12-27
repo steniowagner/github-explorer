@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { AsyncStorage } from 'react-native';
 import createRootNavigator from 'routes';
+
+import { getItemFromStorage } from 'utils/async-storage-manager';
+import { GITHUB_USERNAME_KEY } from '/utils/global-keys';
 
 class AppContainer extends Component {
   constructor(props) {
@@ -14,17 +16,16 @@ class AppContainer extends Component {
 
   componentWillMount() {
     this.checkUserAlreadyPersisted()
-      .then(res => {
+      .then(isUserAlreadyPersisted => {
         this.setState({
-          isUserAlreadyPersisted: res,
+          isUserAlreadyPersisted,
           isUserAlreadyChecked: true
         })
       });
   }
 
-  checkUserAlreadyPersisted = async () => {
-    const user = await AsyncStorage.getItem('@GitHubExplorer:username');
-    return user !== null;
+  checkUserAlreadyPersisted = () => {
+    return getItemFromStorage(GITHUB_USERNAME_KEY);
   }
 
   render() {

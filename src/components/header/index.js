@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { NavigationActions } from 'react-navigation';
 
 import { removeItemFromStorage } from 'utils/async-storage-manager';
+import { GITHUB_USERNAME_KEY } from '/utils/global-keys';
+import { navigate } from 'utils/navigation-manager';
+
 import styles from './styles';
 import { colors } from 'styles'
 
-
 class Header extends Component {
-
   constructor(props) {
     super(props);
   }
@@ -22,24 +22,10 @@ class Header extends Component {
   }
 
   onLogoutButtonClicked = () => {
-    const { dispatch } = this.props.navigation;
-
-    removeItemFromStorage('@GitHubExplorer:username')
+    removeItemFromStorage(GITHUB_USERNAME_KEY)
       .then(() => {
-
-      })
-
-
-    /*const resetAction = NavigationActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({
-          routeName: 'Welcome'
-        })
-      ]
-    });
- 
-    dispatch(resetAction);*/
+        navigate(this.props.navigation, 'Welcome');
+      });
   }
 
   render() {

@@ -7,9 +7,12 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  AsyncStorage,
   ActivityIndicator
 } from 'react-native';
+
+import { persistItemInStorage } from 'utils/async-storage-manager';
+import { GITHUB_USERNAME_KEY } from '/utils/global-keys';
+import { navigate } from 'utils/navigation-manager';
 
 import api from 'services/api';
 import styles from './styles';
@@ -49,8 +52,8 @@ class Welcome extends Component {
 
     this.getGitHubUserInfo()
       .then(() => {
-        this.persistUsernameIntoStorage();
-        this.performScreenNavigation();
+        persistItemInStorage(GITHUB_USERNAME_KEY, this.state.username);
+        navigate(this.props.navigation, 'Explorer');
       })
       .catch(() => {
         this.setState({
@@ -67,25 +70,6 @@ class Welcome extends Component {
     if (!response.ok) {
       throw Error();
     }
-  }
-
-  persistUsernameIntoStorage = async () => {
-    await AsyncStorage.setItem('@GitHubExplorer:username', this.state.username);
-  }
-
-  performScreenNavigation = () => {
-    const { dispatch } = this.props.navigation;
-
-    const resetAction = NavigationActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({
-          routeName: 'Explorer'
-        })
-      ]
-    });
-
-    dispatch(resetAction);
   }
 
   render() {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavigationActions } from 'react-navigation';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
 
 import {
@@ -7,12 +8,15 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  ActivityIndicator
+  ActivityIndicator,
+  StatusBar,
+  Platform
 } from 'react-native';
 
 import { persistItemInStorage } from 'utils/async-storage-manager';
 import { GITHUB_USERNAME_KEY } from '/utils/global-keys';
 import { navigate } from 'utils/navigation-manager';
+import setupStatusBarColor from 'utils/status-bar-color-manager';
 
 import githubApiService from 'services/github-api';
 import styles from './styles';
@@ -45,7 +49,11 @@ class Welcome extends Component {
     header: null
   };
 
-  onExploreButtonClicked = () => {
+  componentWillMount() {
+    setupStatusBarColor();
+  }
+
+  onExploreButtonPressed = () => {
     this.setState({
       isLoading: true
     })
@@ -75,11 +83,13 @@ class Welcome extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Icon name="github" size={100} style={{ marginBottom: 15 }} />
         <Text style={styles.welcomeTitle}>Welcome!</Text>
         <Text style={[styles.baseDescription, styles.welcomeDescription]}>To go ahead, enter with some GitHub username</Text>
 
         <TextInput
           style={[styles.largeWidgetStyle, styles.input]}
+          underlineColorAndroid={'transparent'}
           placeholder="Type GitHub username"
           autoCapitalize="none"
           autoCorrect={false}
@@ -93,20 +103,13 @@ class Welcome extends Component {
 
         <TouchableOpacity
           style={this.state.typedUsername ? ACTIVE_BUTTON_STYLE : INACTIVE_BUTTON_STYLE}
-          onPress={this.onExploreButtonClicked}
+          onPress={this.onExploreButtonPressed}
           disabled={!this.state.typedUsername}>
 
           {
-            this.state.isLoading ?
-              <ActivityIndicator
-                size="small"
-                color="#FFF" />
-
-              :
-
-              <Text style={this.state.typedUsername ? ACTIVE_BUTTON_TEXT_STYLE : INACTIVE_BUTTON_TEXT_STYLE}>
-                Explore
-              </Text>
+            this.state.isLoading
+              ? <ActivityIndicator size="small" color="#FFF" />
+              : <Text style={this.state.typedUsername ? ACTIVE_BUTTON_TEXT_STYLE : INACTIVE_BUTTON_TEXT_STYLE}>Explore</Text>
           }
 
         </TouchableOpacity>

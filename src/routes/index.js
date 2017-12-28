@@ -26,11 +26,16 @@ const createRootNavigator = (userAlreadyPersisted = false) =>
           animationEnabled: true,
           tabBarPosition: 'bottom',
           tabBarOptions: {
-            showLabel: false,
+            showLabel: true,
+            showIcon: true,
             activeTintColor: colors.white,
             inactiveTintColor: colors.inactive,
+            indicatorStyle: {
+              borderBottomColor: '#ffffff',
+              borderBottomWidth: 2,
+            },
             style: {
-              backgroundColor: colors.primary
+              backgroundColor: colors.primary,
             }
           }
         })

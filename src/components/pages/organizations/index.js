@@ -5,7 +5,8 @@ import {
   View,
   Text,
   ScrollView,
-  ActivityIndicator
+  ActivityIndicator,
+  RefreshControl
 } from 'react-native';
 
 import Organization from './components/organization-list-item';
@@ -27,7 +28,7 @@ class Organizations extends Component {
 
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
-      <Icon name="building" size={20} color={tintColor} />
+      <Icon name="building" size={18} color={tintColor} />
     )
   };
 
@@ -57,29 +58,37 @@ class Organizations extends Component {
     this.state.organizations.length
       ? this.renderOrganizations()
       : <View style={styles.indicator}>
-        <Text style={styles.empty}>No Organziations found</Text>
+        <Text style={styles.noOrganizationsFound}>No Organziations found</Text>
       </View>
   );
 
   renderOrganizations = () => (
-    this.state.organizations.map(organization => (
-      <Organization
-        key={organization.id}
-        organization={organization} />
-    ))
+    <ScrollView
+      contentContainerStyle={styles.contentContainer}
+      refreshControl={
+        <RefreshControl
+          refreshing={this.state.isLoading}
+          onRefresh={this.loadOrganizations} />
+      }>
+      {
+        this.state.organizations.map(organization => (
+          <Organization
+            key={organization.id}
+            organization={organization} />
+        ))
+      }
+    </ScrollView>
   );
 
   render() {
     return (
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}>
+      <View style={styles.container}>
         {
           this.state.isLoading
-            ? <ActivityIndicator size="small" color="#999" style={styles.loadingIndicator} />
+            ? <ActivityIndicator size="small" color="#999" style={styles.indicator} />
             : this.renderOrganizationsList()
         }
-      </ScrollView>
+      </View>
     );
   }
 }

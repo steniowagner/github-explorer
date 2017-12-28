@@ -11,7 +11,7 @@ const Repository = ({ repository }) => (
     <View style={styles.infoContainer}>
       <View style={styles.info}>
         <Icon name="star" size={14} style={styles.infoIcon} />
-        <Text style={styles.infoText}>{repository.stargaze_count}</Text>
+        <Text style={styles.infoText}>{repository.stargazers_count}</Text>
       </View>
       <View style={styles.info}>
         <Icon name="code-fork" size={14} style={styles.infoIcon} />

@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors } from 'styles';
+import { colors, fonts } from 'styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,14 +8,19 @@ const styles = StyleSheet.create({
   },
 
   contentContainer: {
-    flex: 1,
-    padding: 20,
+    paddingHorizontal: 15,
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
 
-  loadingIndicator: {
+  noOrganizationsFound: {
+    color: colors.primary,
+    fontSize: fonts.regular,
+    fontWeight: 'bold',
+  },
+
+  indicator: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 40,
+    paddingBottom: 100,
   },
 
   welcomeTitle: {

@@ -10,5 +10,5 @@ export default {
   error: '#FF5A5A',
 
   inactive: '#878EA0',
-  background: '#FBFAFF',
+  background: '#e0e0e0',
 };

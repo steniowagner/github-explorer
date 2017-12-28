@@ -6,15 +6,16 @@ import {
   ActivityIndicator,
   Text,
   FlatList,
-  RefreshControl
+  RefreshControl,
 } from 'react-native';
 
 import Repository from './components/repository-list-item';
-import githubApiService from 'services/github-api';
 import styles from './styles';
+import githubApiService from 'services/github-api';
 
 import { getItemFromStorage } from 'utils/async-storage-manager';
 import { GITHUB_USERNAME_KEY } from 'utils/global-keys';
+import setupStatusBarColor from 'utils/status-bar-color-manager';
 
 class Repositories extends Component {
   constructor(props) {
@@ -29,11 +30,13 @@ class Repositories extends Component {
 
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
-      <Icon name="list-alt" size={20} color={tintColor} />
+      <Icon name="database" size={18} color={tintColor} />
     )
   };
 
   componentWillMount() {
+    setupStatusBarColor('dark-content');
+
     this.setState({
       isLoading: true
     });
@@ -49,7 +52,7 @@ class Repositories extends Component {
   loadRepositories = async () => {
     this.setState({
       isRefreshing: true
-    })
+    });
 
     const username = await getItemFromStorage(GITHUB_USERNAME_KEY);
     const response = await githubApiService.get(`/users/${username}/repos`);
@@ -64,9 +67,9 @@ class Repositories extends Component {
     this.state.repositories.length
       ? this.renderRepositories()
       : <View style={styles.indicator}>
-        <Text style={styles.empty}>No Repository found</Text>
+        <Text style={styles.noRepositoriesFound}>No Repositories found</Text>
       </View>
-  )
+  );
 
   renderRepositories = () => (
     <FlatList
@@ -79,7 +82,7 @@ class Repositories extends Component {
           onRefresh={this.loadRepositories} />
       }
     />
-  )
+  );
 
   render() {
     return (

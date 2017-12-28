@@ -21,7 +21,7 @@ class Header extends Component {
     }).isRequired,
   }
 
-  onLogoutButtonClicked = () => {
+  onLogoutButtonPressed = () => {
     removeItemFromStorage(GITHUB_USERNAME_KEY)
       .then(() => {
         navigate(this.props.navigation, 'Welcome');
@@ -32,8 +32,8 @@ class Header extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>GitHubExplorer</Text>
-        <TouchableOpacity onPress={this.onLogoutButtonClicked}>
-          <Icon name="exchange" size={14} colors={colors.primary} />
+        <TouchableOpacity onPress={this.onLogoutButtonPressed}>
+          <Icon name="exchange" size={16} color={colors.primary} />
         </TouchableOpacity>
       </View>
     );

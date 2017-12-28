@@ -5,13 +5,13 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
     alignSelf: 'stretch',
-    padding: 20,
+    padding: 15,
     borderRadius: 3,
     shadowColor: colors.inactive,
     shadowOpacity: 0.3,
     shadowRadius: 8,
-    marginTop: 20,
     marginHorizontal: 20,
+    marginVertical: 8
   },
 
   title: {

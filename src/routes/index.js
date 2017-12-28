@@ -22,6 +22,8 @@ const createRootNavigator = (userAlreadyPersisted = false) =>
           screen: Organizations
         }
       }, {
+          swipeEnabled: true,
+          animationEnabled: true,
           tabBarPosition: 'bottom',
           tabBarOptions: {
             showLabel: false,

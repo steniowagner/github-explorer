@@ -23,7 +23,7 @@ class Repositories extends Component {
     this.state = {
       repositories: [],
       isLoading: false,
-      isRefresing: false,
+      isRefreshing: false,
     }
   }
 
@@ -48,7 +48,7 @@ class Repositories extends Component {
 
   loadRepositories = async () => {
     this.setState({
-      isRefresing: true
+      isRefreshing: true
     })
 
     const username = await getItemFromStorage(GITHUB_USERNAME_KEY);
@@ -56,15 +56,14 @@ class Repositories extends Component {
 
     this.setState({
       repositories: response.data,
-      isRefresing: false
+      isRefreshing: false
     });
   }
 
   renderRepositoriesList = () => (
     this.state.repositories.length
       ? this.renderRepositories()
-      :
-      <View style={styles.indicator}>
+      : <View style={styles.indicator}>
         <Text style={styles.empty}>No Repository found</Text>
       </View>
   )
@@ -76,7 +75,7 @@ class Repositories extends Component {
       renderItem={({ item }) => <Repository repository={item} />}
       refreshControl={
         <RefreshControl
-          refreshing={this.state.isRefresing}
+          refreshing={this.state.isRefreshing}
           onRefresh={this.loadRepositories} />
       }
     />

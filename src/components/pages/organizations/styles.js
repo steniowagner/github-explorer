@@ -7,7 +7,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
 
-  indicator: {
+  contentContainer: {
+    flex: 1,
+    padding: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+
+  loadingIndicator: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

@@ -59,7 +59,7 @@ class Organizations extends Component {
       : <View style={styles.indicator}>
         <Text style={styles.empty}>No Organziations found</Text>
       </View>
-  )
+  );
 
   renderOrganizations = () => (
     this.state.organizations.map(organization => (
@@ -67,7 +67,7 @@ class Organizations extends Component {
         key={organization.id}
         organization={organization} />
     ))
-  )
+  );
 
   render() {
     return (

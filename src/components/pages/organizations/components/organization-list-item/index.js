@@ -22,7 +22,7 @@ Organization.propTypes = {
   organization: PropTypes.shape({
     login: PropTypes.string,
     avatar_url: PropTypes.string,
-  }).isRequired,
+  }).isRequired
 };
 
 export default Organization;

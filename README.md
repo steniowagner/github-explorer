@@ -2,9 +2,7 @@
 
 A simple react-native App that allows to see all the repositories and organizations that some GitHub user has.
 
-<Center>
-![alt text](https://media.giphy.com/media/3oFzlZnVt9CYlAcquk/giphy.gif) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![alt text](https://media.giphy.com/media/l0HUhqeubuVJK2JZm/giphy.gif)
-</Center>
+![alt text](https://media.giphy.com/media/3oFzlZnVt9CYlAcquk/giphy.gif) 
 
 ## Getting Started
 

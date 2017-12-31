@@ -1,6 +1,9 @@
 # GitHub-Explorer
 
 A simple react-native App that allows to see all the repositories and organizations that some GitHub user has.
+<Center>
+**Android**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   **iOS**
+![Alt Text](https://media.giphy.com/media/3oFzlZnVt9CYlAcquk/giphy.gif)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   ![AltText](https://media.giphy.com/media/l0HUhqeubuVJK2JZm/giphy.gif)
 
 ## Getting Started
 
@@ -9,8 +12,8 @@ These instructions will get you a copy of the project up and running on your loc
 ### Build Files
 You can also get only the file to run directly on your device:
 
-* Android .apk file: [download]()
-* iOS .dmg file: [download]()
+* Android .apk file: [download](https://drive.google.com/file/d/1wSaIF1_UZYZYk80C7XFUBStteKB7Le2o/view?usp=sharing)
+* iOS file: SOON!
 
 ### Prerequisites
 

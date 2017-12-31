@@ -49,6 +49,11 @@ $ npm install -g create-react-native-app
 $ git clone https://github.com/steniowagner/github-explorer && cd github-explorer
 ```
 
+**Installing project dependencies**
+```
+$ npm install
+```
+
 After cloning the repository and enter on the directory, you just need to run one of the following commands, depending on which platform you want to see the App running:
 
 **Running the iOS App**
